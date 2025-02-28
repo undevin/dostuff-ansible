@@ -1,0 +1,12 @@
+common_ubuntu_packages:
+  - build-essential
+  - curl
+  - git
+  - htop
+  - vim
+
+common_redhat_packages:
+  - curl
+  - git
+  - htop
+  - vim

@@ -1,0 +1,7 @@
+---
+- name: Configure ds-auth-router server
+  hosts: ds-auth-router
+  become: true
+  roles:
+    - common
+    - ds-auth-router

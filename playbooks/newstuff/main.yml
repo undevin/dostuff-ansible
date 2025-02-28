@@ -1,0 +1,7 @@
+---
+- name: Configure newstuff server
+  hosts: newstuff
+  become: true
+  roles:
+    - common
+    - newstuff

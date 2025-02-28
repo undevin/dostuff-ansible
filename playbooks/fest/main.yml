@@ -1,0 +1,7 @@
+---
+- name: Configure fest server
+  hosts: fest
+  become: true
+  roles:
+    - common
+    - fest

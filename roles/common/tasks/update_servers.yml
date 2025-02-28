@@ -1,0 +1,11 @@
+- name: Update Ubuntu and install packages
+  when: ansible_os_family == 'Debian'
+  ansible.builtin.apt:
+    update_cache: true
+    upgrade: dist
+    package: '{{ common_ubuntu_packages }}'
+
+- name: Update RedHat and install packages
+  when: ansible_os_family == 'RedHat'
+  ansible.builtin.dnf:
+    name: '{{ common_redhat_packages }}'

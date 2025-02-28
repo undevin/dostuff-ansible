@@ -1,0 +1,3 @@
+---
+- name: Update and install packages
+  ansible.builtin.import_tasks: update_servers.yml
