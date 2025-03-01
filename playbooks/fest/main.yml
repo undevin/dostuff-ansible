@@ -2,6 +2,7 @@
 - name: Configure fest server
   hosts: fest
   become: true
+  gather_facts: true
   roles:
     - common
     - fest

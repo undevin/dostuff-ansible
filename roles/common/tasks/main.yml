@@ -1,3 +1,9 @@
 ---
 - name: Update and install packages
   ansible.builtin.import_tasks: update_servers.yml
+
+- name: Add deployer user
+  ansible.builtin.import_tasks: create_deployer_user.yml
+
+- name: Set environment variables
+  ansible.builtin.import_tasks: set_env_variables.yml

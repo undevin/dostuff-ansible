@@ -2,6 +2,7 @@
 - name: Configure ds-auth-router server
   hosts: ds-auth-router
   become: true
+  gather_facts: true
   roles:
     - common
     - ds-auth-router

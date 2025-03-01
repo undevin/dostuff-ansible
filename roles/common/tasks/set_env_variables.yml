@@ -1,0 +1,6 @@
+- name: Set deployer env variables
+  ansible.builtin.lineinfile:
+    path: /home/deployer/.bashrc
+    line: '{{ item }}'
+    create: yes
+  with_lines: cat ../files/placeholder.env

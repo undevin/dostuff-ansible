@@ -1,0 +1,47 @@
+- name: Add deployer user
+  when: common_deployer_password is defined
+  ansible.builtin.user:
+    name: deployer
+    shell: /bin/bash
+    create_home: true
+    password: '{{ common_deployer_password }}'
+    update_password: on_create
+    state: present
+  register: deployer_user
+
+- name: Configure deployer user
+  when: deployer_user.changed
+  block:
+    - name: Add deployer user to sudoers
+      ansible.builtin.copy:
+        dest: /etc/sudoers.d/deployer
+        content: 'deployer ALL=(ALL) NOPASSWD: ALL'
+        owner: root
+        group: root
+        mode: '0440'
+      notify: restart sudo
+
+    - name: Create ssh directory for deployer user
+      ansible.builtin.file:
+        name: '/home/deployer/.ssh'
+        owner: deployer
+        group: deployer
+        mode: '0700'
+
+    - name: Add ssh key for deployer user on Debian
+      when: ansible_facts['os_family'] == 'Debian'
+      ansible.builtin.copy:
+        src: '/home/ubuntu/.ssh/authorized_keys'
+        dest: '/home/deployer/.ssh/authorized_keys'
+        owner: deployer
+        group: deployer
+        mode: '0600'
+
+    - name: Add ssh key for deployer user on RedHat
+      when: ansible_facts['os_family'] == 'RedHat'
+      ansible.builtin.copy:
+        src: '/home/ec2-user/.ssh/authorized_keys'
+        dest: '/home/deployer/.ssh/authorized_keys'
+        owner: deployer
+        group: deployer
+        mode: '0600'

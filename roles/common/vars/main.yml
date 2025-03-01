@@ -1,12 +1,36 @@
 common_ubuntu_packages:
   - build-essential
-  - curl
-  - git
+  - bzip2
+  - libssl-dev
+  - libyaml-dev
+  - libffi-dev
+  - libreadline-dev
+  - zlib1g-dev
+  - libgdbm-dev
+  - libncurses-dev
+  - git libxml2-dev
+  - libcurl4-openssl-dev
+  - libmysqlclient-dev
   - htop
-  - vim
+  - nginx
 
 common_redhat_packages:
-  - curl
+  - gcc
+  - gcc-c++
+  - make
+  - bzip2
+  - openssl-devel
+  - libyaml-devel
+  - libffi-devel
+  - readline-devel
+  - zlib-devel
+  - gdbm-devel
+  - nginx
+  - ncurses-devel
   - git
+  - libxml2-devel
+  - libcurl-devel
+  - mysql-devel
   - htop
-  - vim
+
+common_deployer_password: 'd0stuff!'
